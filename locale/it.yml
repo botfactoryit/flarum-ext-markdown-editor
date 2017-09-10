@@ -1,0 +1,25 @@
+botfactoryit-mdeditor:
+  admin:
+    help_texts:
+      title: 'Editor'
+      description: 'Seleziona i simboli da visualizzare nella toolbar dell\'editor'
+    labels:
+      preferences:
+        title: 'Preferenze'
+        symbols: 'Simboli da aggiungere alla toolbar (in JSON): [{"label":"☎","insert":"☎"},{"label":"❄","insert":"❄"}]'
+    buttons:
+      save: 'Salva'
+  forum:
+    toolbar:
+      bold: 'Grassetto'
+      italic: 'Italico'
+      underline: 'Sottolineato'
+      strikethrough: 'Barrato'
+      heading: 'Titolo paragrafo'
+      quote: 'Citazione'
+      code: 'Codice'
+      unordered_list: 'Lista'
+      ordered_list: 'Lista numerata'
+      link: 'Link'
+      image: 'Immagine'
+      guide: 'Guida Markdown'
