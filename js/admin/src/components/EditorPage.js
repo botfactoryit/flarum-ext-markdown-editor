@@ -1,9 +1,9 @@
-import Component from "flarum/Component";
-import Button from "flarum/components/Button";
-import saveSettings from "flarum/utils/saveSettings";
-import Alert from "flarum/components/Alert";
-import Select from "flarum/components/Select";
-import Switch from "flarum/components/Switch";
+import Component from 'flarum/Component';
+import Button from 'flarum/components/Button';
+import saveSettings from 'flarum/utils/saveSettings';
+import Alert from 'flarum/components/Alert';
+import Select from 'flarum/components/Select';
+import Switch from 'flarum/components/Switch';
 
 export default class EditorPage extends Component {
 
