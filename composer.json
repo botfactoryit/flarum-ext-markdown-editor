@@ -1,10 +1,13 @@
 {
-    "name": "ganuonglachanh/flarum-ext-markdown-editor",
+    "name": "botfactoryit/flarum-markdown-editor",
     "description": "Markdown toolbar for Flarum",
     "type": "flarum-extension",
-    "keywords": ["flarum","smileys"],
-    "version": "0.9",
+    "version": "1.0.0",
     "authors": [
+        {
+            "name": "Matteo Contrini",
+            "email": "m.contrini@gmail.com"
+        },
         {
             "name": "XEngine",
             "email": "tidusdragonh3art@gmail.com"
@@ -18,14 +21,14 @@
             "email": "ganuonglachanh@outlook.com"
         }
     ],
-    "license": "Private",
+    "license": "MIT",
     "require": {
 		"php": ">=5.4.0",
         "flarum/core": "^0.1.0-beta.6"
     },
     "autoload": {
         "psr-4": {
-            "GaNuongLaChanh\\MarkdownEditor\\": "src/"
+            "BotFactory\\MarkdownEditor\\": "src/"
         }
     },
     "extra": {

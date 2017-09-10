@@ -1,10 +1,8 @@
-<?php
-namespace GaNuongLaChanh\MarkdownEditor;
+<?php namespace BotFactory\MarkdownEditor;
+
 use Illuminate\Contracts\Events\Dispatcher;
-use GaNuongLaChanh\MarkdownEditor\Listener;
+use BotFactory\MarkdownEditor\Listener;
 
 return function (Dispatcher $events) {
-    $events->subscribe(Listener\AddApplicationAssets::class);
+	$events->subscribe(Listener\AddApplicationAssets::class);
 };
-
-#yeah
