@@ -22,6 +22,7 @@ export default class EnhancedTextEditor extends TextEditor {
 				<ul className="TextEditor-controls EnhancedTextEditor-toolbar">
 					{listItems(this.toolbarItems().toArray())}
 				</ul>
+				
 				<textarea className="FormControl Composer-flexible"
 					config={this.configTextarea.bind(this)}
 					oninput={m.withAttr('value', this.oninput.bind(this))}
@@ -43,19 +44,13 @@ export default class EnhancedTextEditor extends TextEditor {
 	 * @param {Boolean} isInitialized
 	 */
 	configTextarea(element, isInitialized) {
-		if (isInitialized) return;
-
-		const handler = () => {
-			this.onsubmit();
-			m.redraw();
-		};
-
-		$(element).bind('keydown', 'meta+return', handler);
-		$(element).bind('keydown', 'ctrl+return', handler);
+		super.configTextarea(element, isInitialized);
+		
 		$(element).bind('keydown', 'ctrl+b', e => {
 			this.bold();
 			e.preventDefault();
 		});
+		
 		$(element).bind('keydown', 'ctrl+i', e => {
 			this.italic();
 			e.preventDefault();
@@ -63,137 +58,108 @@ export default class EnhancedTextEditor extends TextEditor {
 	}
 
 	/**
-		 * Build an item list for the text editor toolbar.
-		 *
-		 * @return {ItemList}
-		 */
-		toolbarItems() {
-			const items = new ItemList();
+	 * Build an item list for the text editor toolbar.
+	 *
+	 * @return {ItemList}
+	 */
+	toolbarItems() {
+		const items = new ItemList();
 
-			//Just to left margin, bold button is too near to the avatar image
-			items.add('sep0', Separator.component());
+		items.add('bold',
+			Button.component({
+				icon: 'bold',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.bold'),
+				className: 'Button',
+				onclick: () => this.bold()
+			})
+		);
 
-			items.add('bold',
-				Button.component({
-					icon: 'bold',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.bold'),
-					className: 'Button',
-					onclick: () => this.bold()
-				})
-			);
+		items.add('italic',
+			Button.component({
+				icon: 'italic',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.italic'),
+				onclick: () => this.italic()
+			})
+		);
 
-			items.add('italic',
-				Button.component({
-					icon: 'italic',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.italic'),
-					onclick: () => this.italic()
-				})
-			);
+		items.add('underline',
+			Button.component({
+				icon: 'underline',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.underline'),
+				onclick: () => this.underline()
+			})
+		);
 
-			items.add('underline',
-				Button.component({
-					icon: 'underline',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.underline'),
-					onclick: () => this.underline()
-				})
-			);
+		items.add('heading',
+			Button.component({
+				icon: 'header',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.heading'),
+				onclick: () => this.heading()
+			})
+		);
 
-			items.add('heading',
-				Button.component({
-					icon: 'header',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.heading'),
-					onclick: () => this.heading()
-				})
-			);
+		items.add('strikethrough',
+			Button.component({
+				icon: 'strikethrough',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.strikethrough'),
+				onclick: () => this.strikethrough()
+			})
+		);
 
-			items.add('strikethrough',
-				Button.component({
-					icon: 'strikethrough',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.strikethrough'),
-					onclick: () => this.strikethrough()
-				})
-			);
+		items.add('sep1', Separator.component());
 
-			items.add('sep1', Separator.component());
+		items.add('link',
+			Button.component({
+				icon: 'link',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.link'),
+				onclick: () => this.link()
+			})
+		);
 
-			items.add('link',
-				Button.component({
-					icon: 'link',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.link'),
-					onclick: () => this.link()
-				})
-			);
+		items.add('quote',
+			Button.component({
+				icon: 'quote-right',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.quote'),
+				onclick: () => this.quote()
+			})
+		);
 
-			items.add('image',
-				Button.component({
-					icon: 'image',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.image'),
-					onclick: () => this.image()
-				})
-			);
+		items.add('code',
+			Button.component({
+				icon: 'code',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.code'),
+				onclick: () => this.code()
+			})
+		);
 
-			items.add('quote',
-				Button.component({
-					icon: 'quote-right',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.quote'),
-					onclick: () => this.quote()
-				})
-			);
+		items.add('sep2', Separator.component());
 
-			items.add('code',
-				Button.component({
-					icon: 'code',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.code'),
-					onclick: () => this.code()
-				})
-			);
+		items.add('ordered_list',
+			Button.component({
+				icon: 'list-ol',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.ordered_list'),
+				onclick: () => this.ordered_list()
+			})
+		);
 
-			items.add('sep2', Separator.component());
+		items.add('unordered_list',
+			Button.component({
+				icon: 'list-ul',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.unordered_list'),
+				onclick: () => this.unordered_list()
+			})
+		);
 
-			items.add('ordered_list',
-				Button.component({
-					icon: 'list-ol',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.ordered_list'),
-					onclick: () => this.ordered_list()
-				})
-			);
-
-			items.add('unordered_list',
-				Button.component({
-					icon: 'list-ul',
-					className: 'Button',
-					title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.unordered_list'),
-					onclick: () => this.unordered_list()
-				})
-			);
-
-			const symbols = JSON.parse(app.forum.attribute('editorSymbols') || '[]');
-
-			if (symbols.length > 0) {
-				items.add('sep', Separator.component());
-
-				for (let i in symbols) {
-					const symbol = symbols[i];
-					items.add('symbol-' + i,
-						Button.component({
-							children: symbol.label || symbol.insert,
-							className: 'Button',
-							onclick: () => this.insertAtCursor(symbol.insert)
-						})
-					);
-				}
-			}
-
-			return items;
+		return items;
 	}
 
 	/**

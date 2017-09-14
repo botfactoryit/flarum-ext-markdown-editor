@@ -13,4 +13,8 @@ app.initializers.add('botfactoryit-mdeditor', () => {
 			value: this.content(),
 		});
 	});
+	
+	ComposerBody.prototype.focus = function init() {
+		this.$('textarea').focus();
+	};
 });
