@@ -129,6 +129,15 @@ System.register('botfactoryit/mdeditor/components/EnhancedTextEditor', ['flarum/
 							}
 						}));
 
+						items.add('image', Button.component({
+							icon: 'image',
+							className: 'Button',
+							title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.image'),
+							onclick: function onclick() {
+								return _this3.image();
+							}
+						}));
+
 						items.add('quote', Button.component({
 							icon: 'quote-right',
 							className: 'Button',
@@ -219,7 +228,7 @@ System.register('botfactoryit/mdeditor/components/EnhancedTextEditor', ['flarum/
 				}, {
 					key: 'image',
 					value: function image() {
-						this.insertAroundCursor('![', '](https://)');
+						this.insertAroundCursor('[img]', '[/img]');
 					}
 				}, {
 					key: 'quote',
