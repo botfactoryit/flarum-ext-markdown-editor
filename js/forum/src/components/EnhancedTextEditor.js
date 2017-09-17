@@ -120,6 +120,15 @@ export default class EnhancedTextEditor extends TextEditor {
 				onclick: () => this.link()
 			})
 		);
+		
+		items.add('image',
+			Button.component({
+				icon: 'image',
+				className: 'Button',
+				title: app.translator.trans('botfactoryit-mdeditor.forum.toolbar.image'),
+				onclick: () => this.image()
+			})
+		);
 
 		items.add('quote',
 			Button.component({
@@ -230,7 +239,7 @@ export default class EnhancedTextEditor extends TextEditor {
 	 * Insert image.
 	 */
 	image() {
-		this.insertAroundCursor('![', '](https://)')
+		this.insertAroundCursor('[img]', '[/img]')
 	}
 
 	/**

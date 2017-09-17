@@ -11,5 +11,5 @@ botfactoryit-mdeditor:
       unordered_list: 'Lista'
       ordered_list: 'Lista numerata'
       link: 'Link'
-      image: 'Immagine'
+      image: 'Immagine esterna'
       guide: 'Guida Markdown'
